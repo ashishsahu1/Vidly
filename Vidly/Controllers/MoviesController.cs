@@ -33,6 +33,11 @@ namespace Vidly.Controllers
 
             return Content(string.Format(pageIndex + " " + sortBy));
         }
+
+        public ActionResult ByReleseDate(int year, int month)
+        {
+            return Content(year + " " + month);
+        }
     }
 
 
