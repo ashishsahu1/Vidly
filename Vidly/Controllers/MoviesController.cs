@@ -25,7 +25,7 @@ namespace Vidly.Controllers
             return Content("ID = " + id);
         }
 
-        public ActionResult Index(int? pageIndex, string sortBy)
+        public ActionResult Index2(int? pageIndex, string sortBy)
         {
             if (!pageIndex.HasValue)
                 pageIndex = 111;
@@ -67,6 +67,10 @@ namespace Vidly.Controllers
             };
             return View(MovieCusotmerVM);
         }
+
+
+        //Real Vidly Implementation
+
 
     }
 
