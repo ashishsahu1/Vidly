@@ -1,5 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -34,10 +36,38 @@ namespace Vidly.Controllers
             return Content(string.Format(pageIndex + " " + sortBy));
         }
 
-        public ActionResult ByReleseDate(int year, int month)
+        //Convention way of Route 
+        public ActionResult ByReleaseDate(int year, int month)
         {
-            return Content(year + " " + month);
+            return Content("This is Convention way of routing " + year + " " + month);
         }
+
+        //Attribute Routing with ":" used for setting constraints on a part of url
+        [Route("movies/released2/{year}/{month:range(1,12)}")]
+        public ActionResult ByReleaseDate2(int year, int month)
+        {
+            return Content("This is attribute way of routing " + year + " " + month);
+        }
+
+
+        //Demonstrating ViewModel
+        public ActionResult GetMoviesAndCustomer()
+        {
+            Movie movie = new Movie() { Title = "Avengers: End Game" };
+            List<Customer> CustomerLst = new List<Customer>()
+            {
+                new Customer(){Name = "Ashish"},
+                new Customer(){Name = "Ishu"}
+            };
+
+            MovieCustomerViewModel MovieCusotmerVM = new MovieCustomerViewModel()
+            {
+                movie = movie,
+                Customers = CustomerLst
+            };
+            return View(MovieCusotmerVM);
+        }
+
     }
 
 
